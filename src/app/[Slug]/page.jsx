@@ -1,9 +1,8 @@
-"use client";
-import Image from "next/image";
+import React from 'react'
+import News from './News';
 
-import News_Card from "./Components/News_Card";
 
-export default function Home() {
+function page({params}) {
   const newsArticles = [
     {
       title: "Breaking News: Scientists Discover New Planet",
@@ -86,19 +85,15 @@ export default function Home() {
         "https://plus.unsplash.com/premium_photo-1709405755034-c8da5f836657?q=80&w=1952&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
   ];
-  return (
-    <div className="min-h-screen md:p-20">
-      <p className="text-black md:text-4xl text-2xl mt-4 font-semibold text-center capitalize">
-        Latest News Articles
-      </p>
 
-      <hr className="w-[40%] border-2 mx-auto border-pink-300" />
-      <div className="grid md:grid-cols-3 p-10 gap-5">
-        {newsArticles.map((item, i) => {
-          return(
-          <News_Card  item={item} key={i}/>)
-        })}
-      </div>
-    </div>
-  );
+  return (
+
+    <div className='min-h-[80vh]'>{
+      newsArticles ?.filter((item)=> item.slug ==params.Slug).map((item,i)=>{
+        return(<News item={item} key={i}/>)
+      })
+    }</div>
+  )
 }
+
+export default page
